@@ -1,0 +1,91 @@
+[gd_scene load_steps=16 format=3 uid="uid://dwfas8xrm7hfp"]
+
+[ext_resource type="Script" path="res://cat.gd" id="1_5u8p2"]
+[ext_resource type="Texture2D" uid="uid://b5wigiggkcdmw" path="res://assets/cat_walk/gato1_0002.png" id="2_p0wwg"]
+[ext_resource type="Texture2D" uid="uid://c8siwmlhh83ob" path="res://assets/cat_show/Línea de tiempo 1_0003.png" id="2_qvdc1"]
+[ext_resource type="Texture2D" uid="uid://d0ya2twsi6n40" path="res://assets/cat_walk/gato1_0000.png" id="3_6wa1e"]
+[ext_resource type="Texture2D" uid="uid://bfgqu8kn7an1" path="res://assets/cat_walk/gato1_0001.png" id="4_8uigu"]
+[ext_resource type="Texture2D" uid="uid://8j5la2qp1niv" path="res://assets/cat_walk/gato1_0003.png" id="5_gvy33"]
+[ext_resource type="Texture2D" uid="uid://c7mqcmd4u3rbh" path="res://assets/cat_walk/gato1_0004.png" id="6_av6p4"]
+[ext_resource type="Texture2D" uid="uid://dag0njm8coc0u" path="res://assets/cat_show/Línea de tiempo 1_0001.png" id="8_f4b3b"]
+[ext_resource type="Texture2D" uid="uid://bhyfkmdeenpom" path="res://assets/cat_show/Línea de tiempo 1_0002.png" id="9_5mcyl"]
+[ext_resource type="Texture2D" uid="uid://cvx4mi41lquhn" path="res://assets/cat_show/Línea de tiempo 1_0004.png" id="10_uml26"]
+[ext_resource type="AudioStream" uid="uid://dmmgu3rkk7ux" path="res://assets/sound/plop.ogg" id="11_ybk5k"]
+
+[sub_resource type="Animation" id="Animation_ro0qm"]
+resource_name = "cat_walk"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_6wa1e"), ExtResource("4_8uigu"), ExtResource("2_p0wwg"), ExtResource("5_gvy33"), ExtResource("6_av6p4")]
+}
+
+[sub_resource type="Animation" id="Animation_oxvc2"]
+resource_name = "cat_show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_f4b3b"), ExtResource("9_5mcyl"), ExtResource("2_qvdc1")]
+}
+
+[sub_resource type="Animation" id="Animation_sww55"]
+resource_name = "cat_hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_qvdc1"), ExtResource("10_uml26"), ExtResource("8_f4b3b")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvgup"]
+_data = {
+"cat_hide": SubResource("Animation_sww55"),
+"cat_show": SubResource("Animation_oxvc2"),
+"cat_walk": SubResource("Animation_ro0qm")
+}
+
+[node name="Cat" type="Node2D" groups=["cat"]]
+script = ExtResource("1_5u8p2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_qvdc1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+libraries = {
+"": SubResource("AnimationLibrary_yvgup")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Plop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ybk5k")
+bus = &"SFX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

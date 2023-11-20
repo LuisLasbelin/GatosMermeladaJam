@@ -1,0 +1,181 @@
+[gd_scene load_steps=31 format=3 uid="uid://4mmciiuo1lh0"]
+
+[ext_resource type="Script" path="res://end_menu.gd" id="1_x0133"]
+[ext_resource type="Texture2D" uid="uid://6d2a6g64b0je" path="res://assets/fondo.png" id="2_6x2t8"]
+[ext_resource type="Texture2D" uid="uid://b5cngirqapxq6" path="res://assets/cat_tail/colita_0004.png" id="3_b04dx"]
+[ext_resource type="Texture2D" uid="uid://bb3k61ohjfhd2" path="res://assets/cat_tail/colita_0000.png" id="4_a1uny"]
+[ext_resource type="Texture2D" uid="uid://cpl2bdiyln67y" path="res://assets/cat_tail/colita_0001.png" id="5_433qn"]
+[ext_resource type="Texture2D" uid="uid://b7qfvm7timulj" path="res://assets/cat_tail/colita_0002.png" id="6_xo7ba"]
+[ext_resource type="Texture2D" uid="uid://dlx4xujf5y8yl" path="res://assets/cat_tail/colita_0003.png" id="7_vkxbi"]
+[ext_resource type="Texture2D" uid="uid://bue4ot4f8l4tf" path="res://assets/cat_tail/colita_0005.png" id="8_t7l7w"]
+[ext_resource type="Texture2D" uid="uid://7itbtidctr7g" path="res://assets/cat_tail/colita_0006.png" id="9_7sxin"]
+[ext_resource type="Texture2D" uid="uid://d3qgpdltwvovj" path="res://assets/cat_tail/colita_0007.png" id="10_qiwdb"]
+[ext_resource type="Texture2D" uid="uid://dyppm707gqdpi" path="res://assets/alfombra_asset.png" id="11_abksg"]
+[ext_resource type="Texture2D" uid="uid://bqkna71v585rw" path="res://assets/caja_asset.png" id="12_miq4u"]
+[ext_resource type="Texture2D" uid="uid://d3g7rfuj3r4ax" path="res://assets/cama_asset.png" id="13_fdgy5"]
+[ext_resource type="Texture2D" uid="uid://cfhwyl3fqibaj" path="res://assets/cuadro asset.png" id="14_oo8ck"]
+[ext_resource type="Texture2D" uid="uid://cdy68nbnkjcbd" path="res://assets/ovillo_asset.png" id="15_4v5bp"]
+[ext_resource type="Texture2D" uid="uid://i8cu28exhuyd" path="res://assets/pared pasillo_asset.png" id="16_m5jd5"]
+[ext_resource type="Texture2D" uid="uid://bb1w3cwc14gty" path="res://assets/rascador_asset.png" id="17_a21vq"]
+[ext_resource type="PackedScene" uid="uid://dwfas8xrm7hfp" path="res://cat.tscn" id="18_rb5k7"]
+[ext_resource type="Texture2D" uid="uid://xcin6gffvm0w" path="res://assets/tapa rascador_asset.png" id="19_tamsm"]
+[ext_resource type="Texture2D" uid="uid://b4a4x6cnpj64b" path="res://assets/end_menu_back.png" id="20_u7k84"]
+[ext_resource type="FontFile" uid="uid://bwhwfi43ob2pn" path="res://assets/FuturaHandwritten.ttf" id="21_i0vuc"]
+[ext_resource type="Texture2D" uid="uid://d0qiksag0pl5j" path="res://assets/play.png" id="22_d8oxj"]
+
+[sub_resource type="Animation" id="Animation_c234p"]
+resource_name = "cat_tail"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_a1uny"), ExtResource("5_433qn"), ExtResource("6_xo7ba"), ExtResource("7_vkxbi"), ExtResource("3_b04dx"), ExtResource("8_t7l7w"), ExtResource("9_7sxin"), ExtResource("10_qiwdb")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sfn5u"]
+_data = {
+"cat_tail": SubResource("Animation_c234p")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ibld"]
+font = ExtResource("21_i0vuc")
+font_size = 68
+font_color = Color(0, 0, 0, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vocur"]
+font = ExtResource("21_i0vuc")
+font_size = 66
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee0qr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ioe54"]
+texture = ExtResource("22_d8oxj")
+modulate_color = Color(0.698039, 0.698039, 0.698039, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nen6e"]
+texture = ExtResource("22_d8oxj")
+
+[sub_resource type="Theme" id="Theme_2tc10"]
+Button/styles/focus = SubResource("StyleBoxEmpty_ee0qr")
+Button/styles/hover = SubResource("StyleBoxTexture_ioe54")
+Button/styles/normal = SubResource("StyleBoxTexture_nen6e")
+Button/styles/pressed = SubResource("StyleBoxTexture_ioe54")
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_x0133")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Place" type="Node2D" parent="."]
+position = Vector2(-8, 32)
+scale = Vector2(0.693241, 0.693241)
+
+[node name="Background" type="Sprite2D" parent="Place"]
+texture = ExtResource("2_6x2t8")
+
+[node name="Cat_tail" type="Sprite2D" parent="Place"]
+position = Vector2(-390.917, 346.2)
+rotation = -0.281603
+scale = Vector2(0.527876, 0.527876)
+texture = ExtResource("3_b04dx")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Place/Cat_tail"]
+libraries = {
+"": SubResource("AnimationLibrary_sfn5u")
+}
+
+[node name="AlfombraAsset" type="Sprite2D" parent="Place"]
+position = Vector2(349.085, 321.677)
+scale = Vector2(1.4425, 1.4425)
+texture = ExtResource("11_abksg")
+
+[node name="CajaAsset" type="Sprite2D" parent="Place"]
+position = Vector2(-648, 232)
+texture = ExtResource("12_miq4u")
+
+[node name="CamaAsset" type="Sprite2D" parent="Place"]
+position = Vector2(712, 360)
+texture = ExtResource("13_fdgy5")
+
+[node name="CuadroAsset" type="Sprite2D" parent="Place"]
+position = Vector2(-48, -440)
+texture = ExtResource("14_oo8ck")
+
+[node name="OvilloAsset" type="Sprite2D" parent="Place"]
+position = Vector2(40, 240)
+texture = ExtResource("15_4v5bp")
+
+[node name="ParedPasilloAsset" type="Sprite2D" parent="Place"]
+position = Vector2(-496, -248)
+texture = ExtResource("16_m5jd5")
+
+[node name="RascadorAsset" type="Sprite2D" parent="Place"]
+position = Vector2(457.5, -231.5)
+texture = ExtResource("17_a21vq")
+
+[node name="Cat" parent="Place" instance=ExtResource("18_rb5k7")]
+position = Vector2(520.742, -87.9925)
+
+[node name="TapaRascadorAsset" type="Sprite2D" parent="Place"]
+position = Vector2(537.5, -103.5)
+texture = ExtResource("19_tamsm")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.745098, 0.745098, 0.745098, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="EndMenuBack" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(-8, 32)
+scale = Vector2(0.695238, 0.685714)
+texture = ExtResource("20_u7k84")
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = -280.0
+offset_top = 664.0
+offset_right = 96.0
+offset_bottom = 760.0
+text = "0"
+label_settings = SubResource("LabelSettings_4ibld")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 112.0
+offset_top = 696.0
+offset_right = 337.0
+offset_bottom = 790.0
+scale = Vector2(0.562934, 0.562934)
+text = "puntos"
+label_settings = SubResource("LabelSettings_vocur")
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = -0.0520833
+anchor_top = -0.0493827
+anchor_right = -0.0477431
+anchor_bottom = -0.0447531
+offset_left = -108.0
+offset_top = -56.0
+offset_right = -86.0
+offset_bottom = -41.0
+scale = Vector2(11.8023, 9.28169)
+theme = SubResource("Theme_2tc10")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
